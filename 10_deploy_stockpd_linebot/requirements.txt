@@ -1,0 +1,11 @@
+google-cloud-storage
+google-cloud-firestore
+flask
+gunicorn
+line-bot-sdk
+google-cloud-logging
+Pandas
+yfinance
+mpl_finance
+matplotlib
+flask_cors

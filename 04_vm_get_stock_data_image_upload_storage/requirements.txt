@@ -1,0 +1,5 @@
+yfinance
+mpl_finance
+pandas
+matplotlib
+google-cloud-storage

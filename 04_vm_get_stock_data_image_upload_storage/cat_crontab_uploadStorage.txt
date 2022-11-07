@@ -1,0 +1,5 @@
+
+# stockpd : your linux account
+# 30 14 * * * /usr/bin/python3 /home/stockpd/get-stock-data-image-upload-storage/upload_data_image.py # uploadStorage
+30 14 * * * /usr/bin/python3 /home/stockpd/get-stock-data-image-upload-storage/upload_data_image.py 2>&1 </dev/null &  # uploadStorage
+

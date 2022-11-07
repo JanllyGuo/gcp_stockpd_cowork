@@ -1,0 +1,12 @@
+flask
+flask_cors
+quandl
+matplotlib
+numpy
+prophet
+pandas
+pytrends
+google-cloud-firestore
+google-cloud-storage
+google-cloud-logging
+gunicorn

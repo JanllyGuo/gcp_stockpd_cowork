@@ -171,7 +171,7 @@
 - 進行部署
   **到 Cloud Run 建立服務**
   
-### 09_vm_stockpd_linebot
+### 09_vm_stockpd_linebot (待更新..)
 - 先進到該資料夾路徑後，再執行
   ```
   pip3 install -r requirements.txt
@@ -224,6 +224,9 @@
   - **將 Cloud Run 佈署成功後產出的網址連結，貼到 Webhook**
     - 例如 https://run-stockpd-linebot-test-wwwkdfb5ja-oo.a.run.app `/callback`
 
+### 11_vm_prediction_yolov4_test (待上架..)
+- 預計 11/9 - 11/11
+- 
 
 ## 下載所有程式碼(在 GCP Cloud Shell 開啟)
 

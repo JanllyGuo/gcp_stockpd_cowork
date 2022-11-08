@@ -108,6 +108,8 @@
   **到 Cloud Run 建立服務**
  
 ### 06_vm_prediction_yolov7_singlefile_test
+- 先把 **best.pt 和 traced_model.pt** 這兩個檔案複製到該程式碼資料夾路徑
+  - 因為這兩個檔案無法上傳到 github，所以沒有跟程式碼放一起，應該會開雲端硬碟共用(這部份**待補**...)
 - 先進到該資料夾路徑後，再執行
   ```
   pip3 install -r requirements.txt

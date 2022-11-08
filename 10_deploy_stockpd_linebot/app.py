@@ -323,32 +323,33 @@ def handle_follow_event(event):
     # 下載用戶的大頭照
     urllib.request.urlretrieve(line_user_profile.picture_url, file_name)
 
-    # # 把用戶的大頭照上傳到Cloud Storage
-    # storage_client = storage.Client()
-    # # 指定桶子名
-    # bucket_name="jly-gcp-tutorial-user-info"
-    # # 依用戶ID 當資料夾,大頭照檔名為 user_pic.png
-    # destination_blob_name = f"{line_user_profile.user_id}/user_pic.png"
-    # source_file_name = file_name
-    # # 進行上傳
-    # bucket = storage_client.bucket(bucket_name)
-    # blob = bucket.blob(destination_blob_name)
-    # blob.upload_from_filename(source_file_name)
+    # 把用戶的大頭照上傳到Cloud Storage
+    storage_client = storage.Client()
+    # 指定桶子名
+    bucket_name="stockpd-user"
+    # 依用戶ID 當資料夾,大頭照檔名為 user_pic.png
+    destination_blob_name = f"{line_user_profile.user_id}/user_pic.png"
+    source_file_name = file_name
+    # 進行上傳
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+    blob.upload_from_filename(source_file_name)
 
-    # # 設定用戶資料json(把用戶的資料轉成dict)
-    # # 用戶ID , 用戶大頭照的網址 , 用戶的暱稱 , 用戶的狀態
-    # user_dict={
-    #     "user_id": line_user_profile.user_id,
-    #     "picture_url": f"https://storage.googleapis.com/{bucket_name}/destination_blob_name",
-    #     "display_name": line_user_profile.display_name,
-    #     "status_message": line_user_profile.status_message
-    # }
-    # # 新增到資料庫firestore
-    # db = firestore.Client()
-    # # 指定特定表格 line-user , 資料主鍵為 用戶ID
+    # 設定用戶資料json(把用戶的資料轉成dict)
+    # 用戶ID , 用戶大頭照的網址 , 用戶的暱稱 , 用戶的狀態
+    user_dict={
+        "user_id": line_user_profile.user_id,
+        "picture_url": f"https://storage.googleapis.com/{bucket_name}/destination_blob_name",
+        "display_name": line_user_profile.display_name,
+        "status_message": line_user_profile.status_message
+    }
+    # 新增到資料庫firestore
+    db = firestore.Client()
+    # 指定特定表格 line-user , 資料主鍵為 用戶ID
     # doc_ref = db.collection(u'line-user').document(user_dict.get("user_id"))
-    # # 新增整筆資料
-    # doc_ref.set(user_dict)
+    doc_ref = db.collection(u'stockpd-user-info').document(user_dict.get("user_id"))
+    # 新增整筆資料
+    doc_ref.set(user_dict)
 
     # 請 line_bot_api 回傳消息的給用戶(回傳文字訊息:個資已取)
     line_bot_api.reply_message(

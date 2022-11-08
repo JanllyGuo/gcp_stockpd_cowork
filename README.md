@@ -64,7 +64,7 @@
   pip3 install -r requirements.txt
   pip3 install python-crontab
   ```
-- main.py
+- upload_data_image.py
   ```python
   # stockpd-data 和 stockpd-image  須替換成自己建立的 Cloud Storage bucket
   # f'original                     可替換成自己的 bucket 內所建立的資料夾名稱
@@ -80,10 +80,10 @@
   job = my_cron.new(command='/usr/bin/python3 /home/stockpd/get-stock-data-image-upload-storage/upload_data_image.py', comment='uploadStorage')
   job.setall('30 14 * * *') # 設定每天下午 14:30 執行 upload_data_image.py
   ```
-- 調整排程設定 (cat_crontab_uploadStorage.txt 該檔案是將虛擬機器上的排程進行匯出所產出的檔案，可做參考用)
+- 若需要調整排程設定 (可參考 cat_crontab_uploadStorage.txt 內容，該檔案是將目前虛擬機器上的排程設定內容進行匯出)
   ```Shell Script
-  crontab -l    # 檢視目前帳號所建立的排程內容
-  crontab -e    # 編輯目前帳號所建立的排程內容
+  crontab -l    # 檢視目前該帳號所建立的排程內容
+  crontab -e    # 編輯目前該帳號所建立的排程內容
   ```
 
 ### 05_deploy_get_stock_data_image_upload_storage

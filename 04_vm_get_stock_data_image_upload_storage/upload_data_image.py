@@ -4,6 +4,8 @@ import yfinance as yf
 import mpl_finance as mpf
 import matplotlib.pyplot as plt
 from google.cloud import storage
+import sys
+
 
 def plot_Kbar(data):
     df = data
@@ -46,6 +48,9 @@ def upload_storage_img(source, dstfile, bucketname):
 
 
 # main 
+folderpath = '/home/stockpd/get-stock-data-image-upload-storage'
+sys.path.append(folderpath)
+
 stock_list = ['2303', '2317', '2327', '2330', '2345', '2377', '2395', '2409', '2454', '3037', '3481', '3532', '6415', '8046']
 startDate = '2014-01-01'
 
@@ -58,7 +63,9 @@ for stockid in stock_list:
     upload_storage_file(csvfile, f'{stockid}.csv', 'stockpd-data')
 
     fig = plot_Kbar(data[-100:])
-    fig.savefig(f'{stockid}.png')
+    # fig.savefig(f'{stockid}.png')   # png saved in /home/$account
+    # fig.savefig(f'/home/stockpd/get-stock-data-image-upload-storage/{stockid}.png') 
+    fig.savefig(f'{folderpath}/{stockid}.png')
     upload_storage_img(f'{stockid}.png', f'original/{stockid}.png', 'stockpd-image')
     print(f'Upload {stockid} data to storage done')
 

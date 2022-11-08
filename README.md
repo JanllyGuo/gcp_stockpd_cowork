@@ -13,9 +13,9 @@
 - 直接複製貼上 requirements.txt 的內容
 - main.py
   ```python
-  # f'stock-data  可替換成自己的 bucket 內所建立的資料夾名稱
-  # $bucket_name  須替換成自己建立的 Cloud Storage bucket
-  upload_storage(csvfile, f'stock-data/{stockid}.csv', '$bucket_name)
+  # f'stock-data      可替換成自己的 bucket 內所建立的資料夾名稱
+  # Your bucket name  須替換成自己建立的 Cloud Storage bucket
+  upload_storage(csvfile, f'stock-data/{stockid}.csv', 'Your bucket name')
   ```
 
 ### 02_deploy_get_stock_data_upload_storage

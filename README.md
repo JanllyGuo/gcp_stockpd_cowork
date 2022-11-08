@@ -8,7 +8,7 @@
 
 00_**vm**：代表程式碼是在 GCP Compute Engine 虛擬機器上開發並且運行
 
-## 每個檔案資料夾的使用輔助說明
+## 各個檔案資料夾的使用說明
 ### 01_gcf_get_stock_data_upload_storage
 - 直接複製貼上 requirements.txt 的內容
 - main.py
@@ -192,6 +192,20 @@
   ```python
   # 替換自己的 bucket 和 bucket 內的資料夾
   ```
+- 使用 ngrok 本地測試 (記得要先註冊 ngrok)
+  ```Shell Script
+  # 下載 ngrok
+  wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+  # 解壓縮
+  unzip ngrok-stable-linux-amd64.zip
+  # 變更權限
+  sudo chmod u+x ngrok
+  # 使用自己的 ngrok token進行授權
+  ./ngrok authtoken YOUR-NGROK-TOKEN
+  # 運行 ngrok
+  ./ngrok http --region ap 8080
+  ```
+  - **本地端使用 ngrok測試成功後，再做 Cloud Build -> Cloud Run (因為 ngrok 每次只能運行兩小時)**
 - 構建程式碼
   ```Shell Script
   gcloud config set project YOUR-PROJECT-ID
@@ -204,7 +218,7 @@
   LINE_CHANNEL_ACCESS_TOKEN: 自己的 LINE channel_access_token
   LINE_CHANNEL_SECRET: 自己的 LINE channel_secret
   ```
-- LINE Message API
+- LINE Messaging API
   - **將 Cloud Run 佈署成功後產出的網址連結，貼到 Webhook**
     - 例如 https://run-stockpd-linebot-test-wwwkdfb5ja-oo.a.run.app `/callback`
 
